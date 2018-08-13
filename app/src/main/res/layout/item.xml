@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="310dp"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/tv_word"
+        android:layout_width="110dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="2dp"
+        android:hint="단어"
+        android:textColor="#442C2E"
+        android:textSize="8pt"
+        />
+
+    <TextView
+        android:id="@+id/tv_mean"
+        android:layout_width="180dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_height="match_parent"
+        android:hint="뜻"
+        android:paddingTop="3dp"
+        android:textColor="#442C2E"
+        android:textSize="6pt" />
+</LinearLayout>
+
