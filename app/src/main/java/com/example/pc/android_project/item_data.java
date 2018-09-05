@@ -13,7 +13,7 @@ public class item_data extends LinearLayout
    Context mContext;
    LayoutInflater inflater;
 
-   TextView textView1, textView2, textView3;
+   TextView textView1, textView2;
 
     public item_data(Context context){
       super(context);
@@ -37,7 +37,7 @@ public class item_data extends LinearLayout
 
         textView1 = (TextView) findViewById(R.id.tv_word);
         textView2 = (TextView) findViewById(R.id.tv_mean);
-        textView3 = (TextView) findViewById(R.id.tv_dialog);
+
 
     }
 
@@ -47,10 +47,6 @@ public class item_data extends LinearLayout
 
     public  void setMean(String mean){
         textView2.setText(mean);
-    }
-
-    public  void setDialog(String dialog){
-        textView2.setText(dialog);
     }
 
 }

@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 public class script_control extends AppCompatActivity {
 
-    TextView question, answer, ex;
-    Button btnNext, btnPrev;
+    TextView question, answer;
+    Button btnNext;
     DBHelper helper = new DBHelper(this);
     Cursor cursor;
     SQLiteDatabase db;
@@ -20,6 +20,9 @@ public class script_control extends AppCompatActivity {
     String qu = "";
     String an = "";
 
+    /**
+     * DB 테이블 id 증가시켜주는 변수
+     */
     Integer p = 1;
 
     @Override
@@ -29,22 +32,17 @@ public class script_control extends AppCompatActivity {
 
         question = (TextView) findViewById(R.id.question);
         answer = (TextView) findViewById(R.id.answer);
-        ex = (TextView) findViewById(R.id.view);
 
         btnNext = (Button) findViewById(R.id.btnNext);
-        btnPrev = (Button) findViewById(R.id.btnPrev);
 
         Bundle bundle = getIntent().getExtras();
         Integer num = bundle.getInt("list_menu");
 
-        // question.setText(ary);\
-
         db = helper.getWritableDatabase();
 
-
-
+        /** 리스트 <1. 인사>를 선택했을 경우 */
         if (num == 0) {
-            cursor = db.rawQuery("SELECT question, answer FROM script_01TB WHERE _id == 1" , null);
+            cursor = db.rawQuery("SELECT question, answer FROM script_01TB WHERE _id == 1", null);
             while (cursor.moveToNext()) {
                 qu = cursor.getString(0);
                 an = cursor.getString(1);
@@ -54,9 +52,8 @@ public class script_control extends AppCompatActivity {
                 public void onClick(View view) {
                     db = helper.getWritableDatabase();
                     ++p;
-                    String a = p.toString();
-                    Toast.makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
-
+                    if (p > 4)
+                        p = 1;
                     cursor = db.rawQuery("SELECT question, answer FROM script_01TB WHERE _id == " + p, null);
                     while (cursor.moveToNext()) {
                         qu = cursor.getString(0);
@@ -70,14 +67,63 @@ public class script_control extends AppCompatActivity {
                 }
             });
 
-
+            /** 리스트 <2. 대중교통>을 선택했을 경우 */
         } else if (num == 1) {
-            cursor = db.rawQuery("SELECT question, answer FROM script_02TB WHERE _id == " + p, null);
+            cursor = db.rawQuery("SELECT question, answer FROM script_02TB WHERE _id == 1", null);
+            while (cursor.moveToNext()) {
+                qu = cursor.getString(0);
+                an = cursor.getString(1);
+            }
+            btnNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db = helper.getWritableDatabase();
+                    ++p;
+                    if (p > 4)
+                        p = 1;
+                    cursor = db.rawQuery("SELECT question, answer FROM script_02TB WHERE _id == " + p, null);
+                    while (cursor.moveToNext()) {
+                        qu = cursor.getString(0);
+                        an = cursor.getString(1);
+                    }
+                    question.setText(qu);
+                    answer.setText(an);
+
+                    cursor.close();
+                    db.close();
+                }
+            });
+            /** 리스트 <3. 마트(시장)>을 선택했을 경우 */
+        } else {
+            cursor = db.rawQuery("SELECT question, answer FROM script_03TB WHERE _id == 1", null);
+            while (cursor.moveToNext()) {
+                qu = cursor.getString(0);
+                an = cursor.getString(1);
+            }
+            btnNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db = helper.getWritableDatabase();
+                    ++p;
+                    if (p > 2)
+                        p = 1;
+                    cursor = db.rawQuery("SELECT question, answer FROM script_03TB WHERE _id == " + p, null);
+                    while (cursor.moveToNext()) {
+                        qu = cursor.getString(0);
+                        an = cursor.getString(1);
+                    }
+                    question.setText(qu);
+                    answer.setText(an);
+
+                    cursor.close();
+                    db.close();
+                }
+            });
         }
 
+        /** 첫 대화화면 출력 */
         question.setText(qu);
         answer.setText(an);
-
 
         cursor.close();
         db.close();

@@ -44,13 +44,11 @@ public class DriveAdapter extends ArrayAdapter<DriveVO> {
         /** 'item.xml'에 있는 요소들의 id 불러와 저장하는 과정 */
         TextView wordView = holder.wordView;
         TextView meanView = holder.meanView;
-        TextView dialogView = holder.dialogView;
 
         final DriveVO vo = datas.get(position);
 
         wordView.setText(vo.word);
         meanView.setText(vo.mean);
-        dialogView.setText(vo.dialog);
 
         return convertView;
     }
