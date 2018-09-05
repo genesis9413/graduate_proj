@@ -23,7 +23,7 @@ public class script_control extends AppCompatActivity {
     /**
      * DB 테이블 id 증가시켜주는 변수
      */
-    Integer p = 1;
+    Integer i = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +51,10 @@ public class script_control extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     db = helper.getWritableDatabase();
-                    ++p;
-                    if (p > 4)
-                        p = 1;
-                    cursor = db.rawQuery("SELECT question, answer FROM script_01TB WHERE _id == " + p, null);
+                    ++i;
+                    if (i > 4)
+                        i = 1;
+                    cursor = db.rawQuery("SELECT question, answer FROM script_01TB WHERE _id == " + i, null);
                     while (cursor.moveToNext()) {
                         qu = cursor.getString(0);
                         an = cursor.getString(1);
@@ -78,10 +78,10 @@ public class script_control extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     db = helper.getWritableDatabase();
-                    ++p;
-                    if (p > 4)
-                        p = 1;
-                    cursor = db.rawQuery("SELECT question, answer FROM script_02TB WHERE _id == " + p, null);
+                    ++i;
+                    if (i > 4)
+                        i = 1;
+                    cursor = db.rawQuery("SELECT question, answer FROM script_02TB WHERE _id == " + i, null);
                     while (cursor.moveToNext()) {
                         qu = cursor.getString(0);
                         an = cursor.getString(1);
@@ -104,10 +104,10 @@ public class script_control extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     db = helper.getWritableDatabase();
-                    ++p;
-                    if (p > 2)
-                        p = 1;
-                    cursor = db.rawQuery("SELECT question, answer FROM script_03TB WHERE _id == " + p, null);
+                    ++i;
+                    if (i > 2)
+                        i = 1;
+                    cursor = db.rawQuery("SELECT question, answer FROM script_03TB WHERE _id == " + i, null);
                     while (cursor.moveToNext()) {
                         qu = cursor.getString(0);
                         an = cursor.getString(1);

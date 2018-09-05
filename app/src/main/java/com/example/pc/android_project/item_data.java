@@ -38,7 +38,6 @@ public class item_data extends LinearLayout
         textView1 = (TextView) findViewById(R.id.tv_word);
         textView2 = (TextView) findViewById(R.id.tv_mean);
 
-
     }
 
     public  void setWord(String word){

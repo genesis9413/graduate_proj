@@ -47,7 +47,6 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal">
-
         <Button
             android:id="@+id/btnNext"
             android:layout_width="50dp"
