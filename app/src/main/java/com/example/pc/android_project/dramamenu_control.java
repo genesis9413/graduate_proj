@@ -18,7 +18,7 @@ public class dramamenu_control extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drama_menu);
 
-        final String[] ary = {"1 미생", "2 ", "3 "};
+        final String[] ary = {"1 타요", "2 ", "3 "};
 
         drama_listview = (ListView) findViewById(R.id.drama_listview);
 
