@@ -23,7 +23,6 @@ public class script_control extends AppCompatActivity implements TextToSpeech.On
     SQLiteDatabase db;
 
     private TextToSpeech tts;
-
     String qu = "";
     String an = "";
 

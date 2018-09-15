@@ -3,6 +3,7 @@ package com.example.pc.android_project;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,45 +12,42 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class DriveAdapter extends ArrayAdapter<DriveVO> {
+public class DriveAdapter extends RecyclerView.Adapter<DriveAdapter.ViewHolder> {
     Context context;
     int resId;
-    ArrayList<DriveVO> datas;
+    ArrayList<DriveVO> mdatas;
 
-    public DriveAdapter (Context context, int resId, ArrayList<DriveVO> datas){
-        super(context, resId);
-        this.context = context;
-        this.resId = resId;
-        this.datas = datas;
-    }
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView wordView;
+        public TextView meanView;
 
-    @Override
-    public int getCount(){
-        return datas.size();
-    }
-
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
-        if(convertView == null){
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(resId, null);
-
-            DriverHolder holder = new DriverHolder(convertView);
-            convertView.setTag(holder);
+        public ViewHolder(View view) {
+            super(view);
+            wordView = (TextView) view.findViewById(R.id.tv_word);
+            meanView = (TextView) view.findViewById(R.id.tv_mean);
         }
-
-        DriverHolder holder = (DriverHolder) convertView.getTag();
-
-        /** 'item.xml'에 있는 요소들의 id 불러와 저장하는 과정 */
-        TextView wordView = holder.wordView;
-        TextView meanView = holder.meanView;
-
-        final DriveVO vo = datas.get(position);
-
-        wordView.setText(vo.word);
-        meanView.setText(vo.mean);
-
-        return convertView;
     }
+
+    public DriveAdapter(ArrayList<DriveVO> mydatas) {
+        mdatas = mydatas;
+    }
+
+    @Override
+    public DriveAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        ViewHolder vh = new ViewHolder(v);
+        return vh;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.wordView.setText(mdatas.get(position).word);
+        holder.meanView.setText(mdatas.get(position).mean);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mdatas.size();
+    }
+
 }
