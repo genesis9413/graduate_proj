@@ -13,8 +13,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class DriveAdapter extends RecyclerView.Adapter<DriveAdapter.ViewHolder> {
-    Context context;
-    int resId;
     ArrayList<DriveVO> mdatas;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -34,7 +32,7 @@ public class DriveAdapter extends RecyclerView.Adapter<DriveAdapter.ViewHolder> 
 
     @Override
     public DriveAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_item, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
