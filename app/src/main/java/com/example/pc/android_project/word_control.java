@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -16,10 +17,15 @@ public class word_control extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<DriveVO> mydatas;
 
+    TextView day_num;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_view);
+
+        Bundle bundle = getIntent().getExtras();
+        String numday = bundle.getString("numDay");
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listview);
 
@@ -31,6 +37,11 @@ public class word_control extends AppCompatActivity {
         mydatas = new ArrayList<>();
         mAdapter = new DriveAdapter(mydatas);
         mRecyclerView.setAdapter(mAdapter);
+
+        day_num = (TextView) findViewById(R.id.day_num);
+
+        /** DAY NUM 들어갈 곳 */
+        day_num.setText(numday);
 
         DBHelper helper = new DBHelper(this);
 

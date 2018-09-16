@@ -15,9 +15,10 @@
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="단어학습"
+           android:hint="DAY NUM"
            android:textSize="10pt"
-           android:textStyle="bold"/>
+           android:textStyle="bold"
+           android:id="@+id/day_num"/>
 
     </LinearLayout>
 
