@@ -38,6 +38,14 @@ public class study_control extends AppCompatActivity {
             }
         });
 
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(study_control.this, Knowledge_study.class);
+
+                startActivity(intent);
+            }
+        });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +54,7 @@ public class study_control extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
 
     }

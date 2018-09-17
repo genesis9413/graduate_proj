@@ -28,7 +28,7 @@
             android:background="@drawable/buttonshape"
             android:shadowColor="#939393"
             android:shadowRadius="5"
-            android:text="드라마대본" />
+            android:text="영상학습" />
 
         <Button
             android:id="@+id/btn2"

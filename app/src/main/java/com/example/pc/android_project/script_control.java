@@ -3,26 +3,20 @@ package com.example.pc.android_project;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
-
-public class script_control extends AppCompatActivity implements TextToSpeech.OnInitListener {
+public class script_control extends AppCompatActivity {
 
     TextView question, answer;
-    Button btnNext, a_record, q_record;
-
+    Button btnNext;
     DBHelper helper = new DBHelper(this);
     Cursor cursor;
     SQLiteDatabase db;
 
-    private TextToSpeech tts;
     String qu = "";
     String an = "";
 
@@ -40,10 +34,6 @@ public class script_control extends AppCompatActivity implements TextToSpeech.On
         answer = (TextView) findViewById(R.id.answer);
 
         btnNext = (Button) findViewById(R.id.btnNext);
-        a_record = (Button) findViewById(R.id.a_record);
-        q_record = (Button) findViewById(R.id.q_record);
-
-        tts = new TextToSpeech(this, this);
 
         Bundle bundle = getIntent().getExtras();
         Integer num = bundle.getInt("list_menu");
@@ -137,70 +127,6 @@ public class script_control extends AppCompatActivity implements TextToSpeech.On
 
         cursor.close();
         db.close();
-
-        q_record.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                q_speakOut();
-            }
-        });
-
-        a_record.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                a_speakOut();
-            }
-        });
-
-    }
-
-    /**
-     * TTS 부분
-     */
-    @Override
-    public void onDestroy() {
-        // Don't forget to shutdown!
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    public void onInit(int status) {
-        // TODO Auto-generated method stub
-
-        if (status == TextToSpeech.SUCCESS) {
-
-            int result = tts.setLanguage(Locale.KOREA);
-
-            if (result == TextToSpeech.LANG_MISSING_DATA
-                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS", "Language is not supported");
-            } else {
-                a_record.setEnabled(true);
-                q_record.setEnabled(true);
-                a_speakOut();
-                q_speakOut();
-            }
-
-        } else {
-            Log.e("TTS", "Initilization Failed");
-        }
-
-    }
-
-    private void a_speakOut() {
-        String a_text = answer.getText().toString();
-
-        tts.speak(a_text, TextToSpeech.QUEUE_FLUSH, null, null);
-    }
-
-    private void q_speakOut() {
-        String q_text = question.getText().toString();
-
-        tts.speak(q_text, TextToSpeech.QUEUE_FLUSH, null, null);
 
     }
 }
