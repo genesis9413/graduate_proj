@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="예절이란 무엇인가?">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/manners"
+                    android:icon="@drawable/book"
+                    android:title="기본지식" />
+                <item
+                    android:id="@+id/manners_etiquette"
+                    android:icon="@drawable/book"
+                    android:title="예절과 에티켓" />
+                <item
+                    android:id="@+id/manners_sort"
+                    android:icon="@drawable/book"
+                    android:title="예절의 종류" />
+            </group>
+
+        </menu>
+    </item>
+
+    <item android:title="퀴즈">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/quiz_word"
+                android:icon="@drawable/book"
+                android:title="단어" />
+            <item
+                android:id="@+id/quiz_script"
+                android:icon="@drawable/book"
+                android:title="대본" />
+
+            </group>
+        </menu>
+    </item>
+
+</menu>
